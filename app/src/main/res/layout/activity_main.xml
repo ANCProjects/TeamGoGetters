@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/tan_background"
+    android:orientation="vertical"
+    tools:context="com.musicapp.android.allure.MainActivity">
+
+    <TextView
+        android:id="@+id/hiphop"
+        style="@style/CategoryStyle"
+        android:background="@color/category_hiphop"
+        android:text="HipHop" />
+
+    <TextView
+        android:id="@+id/rnb"
+        style="@style/CategoryStyle"
+        android:background="@color/category_rnb"
+        android:text="RnB" />
+
+    <TextView
+        android:id="@+id/rap"
+        style="@style/CategoryStyle"
+        android:background="@color/category_rap"
+        android:text="Rap" />
+
+</LinearLayout>
