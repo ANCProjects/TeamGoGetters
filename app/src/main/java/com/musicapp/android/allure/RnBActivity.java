@@ -25,17 +25,14 @@ public class RnBActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sound_list);
 
-        // Create an ArrayList of words
+        // Create an ArrayList of sounds
 
         final ArrayList<Sound> sounds = new ArrayList<Sound>();
-        // words.add("one");
+        // sounds.add("one");
         //This is for a single output for more than one we use an object to specify it.
 
         sounds.add(new Sound("charlie","We don't talk anymore",R.raw.charlie_puth, R.drawable.music_icon));
         sounds.add(new Sound("Olamide ft. Don Jazzy","Skelemba", R.raw.ola_don, R.drawable.music_icon));
-
-        // Array Adapter
-//        ArrayAdapter<Word> itemsAdapter = new ArrayAdapter<Word>(this, R.layout.list_item, words);
 
         // Custom ArrayAdapter.
         // Overriding getView method.
