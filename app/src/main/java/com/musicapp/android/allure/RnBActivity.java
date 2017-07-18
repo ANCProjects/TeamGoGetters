@@ -32,7 +32,7 @@ public class RnBActivity extends AppCompatActivity {
         //This is for a single output for more than one we use an object to specify it.
 
         sounds.add(new Sound("charlie","We don't talk anymore",R.raw.charlie_puth, R.drawable.music_icon));
-        sounds.add(new Sound("Olamide ft. Don Jazzy","Skelemba", R.raw.ola_don, R.drawable.music_icon));
+        sounds.add(new Sound("Chris Brown","Party",R.raw.party, R.drawable.music_icon));
 
         // Custom ArrayAdapter.
         // Overriding getView method.

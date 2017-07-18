@@ -24,6 +24,9 @@
         <activity
             android:name=".RnBActivity"
             android:label="@string/category_rnb"/>
+        <activity
+            android:name=".RockActivity"
+            android:label="@string/category_rock"/>
     </application>
 
 </manifest>

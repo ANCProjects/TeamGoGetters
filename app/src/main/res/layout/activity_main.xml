@@ -26,4 +26,9 @@
         android:background="@color/category_rap"
         android:text="Rap" />
 
+    <TextView
+        android:id="@+id/rock"
+        style="@style/CategoryStyle"
+        android:background="@color/category_rock"
+        android:text="Rock" />
 </LinearLayout>

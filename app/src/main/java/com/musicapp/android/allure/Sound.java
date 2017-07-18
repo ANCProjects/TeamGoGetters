@@ -4,8 +4,8 @@ package com.musicapp.android.allure;
  * Created by MOJISOLA on 26/06/2017.
  */
 
-// {@Link Word} represents a vocabulary word that the user wants to learn.
-// It contains a default translation and a miwok translation for that word.
+// {@Link Sound} represents a list of songs the user want to play.
+// It contains a song title and the artist name.
 
 public class Sound {
 
@@ -15,21 +15,18 @@ public class Sound {
     /** Artist of the song*/
     private String mSongArtist;
 
-    /** Miwok audio translation for the word*/
+    /** Play the music*/
     private int  mAudioResourceId;
 
-    /** Diagram representation for each word*/
+    /** Diagram representation for each sound*/
     private int mImageResourceId = NO_IMAGE_PROVIDED ;
 
     private static final int NO_IMAGE_PROVIDED = -1;
 
-             /**
-  +     * Create a new Word object.
-  +     *
-  +     * @param defaultTranslation is the word in a language that the user is already familiar with
-  +     *                           (such as English)
-  +     * @param miwokTranslation is the word in the Miwok language
-  +     */
+        /**Create a new Sound object.
+        @param songArtist is the artist of the song playing
+       @param songTitle is the title of the song playing
+       */
 
     public Sound(String songArtist, String songTitle, int audioResourceId) {
                  mAudioResourceId = audioResourceId;
@@ -49,38 +46,28 @@ public class Sound {
           return mSongTitle;
       }
 
-      /** Get the song title*/
+      /** Get the song artist name*/
     public String getSongArtist(){
         return mSongArtist;
     }
     /**
-     * Get the Miwok translation of the word.
+     * Get the music icon
      */
       public int getImageResourceId() {
                return mImageResourceId;
                 }
 
     /**
-     * Get the Miwok Audio translation of the word.
+     * Get the song to play
      */
       public int getAudioResourceId() {
               return mAudioResourceId;
                }
 
      /**
-      * Returns whether or not there is an image for this word
+      * Returns whether or not there is an image for this sound
      */
       public boolean hasImage() {
             return mImageResourceId != NO_IMAGE_PROVIDED;
     }
-
-//    @Override
-//    public String toString() {
-//        return "Word{" +
-//                "mDefaultTranslation='" + mDefaultTranslation + '\'' +
-//                ", mMiwokTranslation='" + mMiwokTranslation + '\'' +
-//                ", mAudioResourceId=" + mAudioResourceId +
-//                ", mImageResourceId=" + mImageResourceId +
-//                '}';
-//    }
 }

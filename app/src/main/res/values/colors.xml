@@ -32,6 +32,9 @@
     <!-- Background color for the rap category -->
     <color name="category_rap">#8800A0</color>
 
+    <!-- Background color for the rock category -->
+    <color name="category_rock">#008080</color>
+
     <!-- Text color for tabs-->
     <color name="tab_Default_color">#A8A19E</color>
 </resources>

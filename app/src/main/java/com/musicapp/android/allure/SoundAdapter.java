@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class SoundAdapter extends ArrayAdapter<Sound> {
 
-    /** Resource id for the background colour for this list of words */
+    /** Resource id for the background colour for this list of sounds */
 
     private int mColorResourceId;
 
@@ -34,7 +34,7 @@ public class SoundAdapter extends ArrayAdapter<Sound> {
      * The context is used to inflate the layout file, and the list is the data we want
      * to populate into the lists.
      * @param context, The current context. Used to inflate the layout file.
-     * @param sounds A List of Word objects to display in a list
+     * @param sounds A List of Sound objects to display in a list
      */
 
     public SoundAdapter(Activity context, ArrayList<Sound> sounds, int colorResourceId) {
@@ -66,29 +66,29 @@ public class SoundAdapter extends ArrayAdapter<Sound> {
                     R.layout.list_item, parent, false);
         }
 
-        // Get the {@link Word} object located at this position in the list
+        // Get the {@link Sound} object located at this position in the list
         Sound currentWord = getItem(position);
 
-        // Find the TextView in the list_item.xml layout with the ID miwok_textview
+        // Find the TextView in the list_item.xml layout with the ID songtitle_textview
         TextView songTitleTextView = (TextView) listItemView.findViewById(R.id.songtitle_textview);
 
-        // Get the version name from the current AndroidFlavor object and
+        // Get the version name from the current Sound object and
         // set this text on the name TextView
         songTitleTextView.setText(currentWord.getSongTitle());
 
 
-        // Find the TextView in the list_item.xml layout with the ID miwok_textview
+        // Find the TextView in the list_item.xml layout with the ID songartist_textview
         TextView songArtistTextView = (TextView) listItemView.findViewById(R.id.songartist_textview);
 
-        // Get the version name from the current AndroidFlavor object and
+        // Get the version name from the current Sound object and
         // set this text on the name TextView
         songArtistTextView.setText(currentWord.getSongArtist());
 
-        // Find the ImageView in the list_item.xml layout with the ID miwok_imageview
+        // Find the ImageView in the list_item.xml layout with the ID music_imageview
         ImageView musicImageView = (ImageView) listItemView.findViewById(R.id.music_imageview);
 
         if(currentWord.hasImage()) {
-            // Get the version name from the current AndroidFlavor object and
+            // Get the version name from the current Sound object and
             // set this text on the name TextView
             musicImageView.setImageResource(currentWord.getImageResourceId());
             musicImageView.setVisibility(View.VISIBLE);

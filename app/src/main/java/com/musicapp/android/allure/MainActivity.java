@@ -16,10 +16,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Find View that shows number category.
-        TextView numbers = (TextView)findViewById(R.id.hiphop);
+        TextView hiphop = (TextView)findViewById(R.id.hiphop);
 
         // Set a ClickListener on that View
-        numbers.setOnClickListener(new View.OnClickListener() {
+        hiphop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Create a new intent to open the {@link NumbersActivity}
@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Find View that shows Family Members category.
-        TextView family = (TextView)findViewById(R.id.rnb);
+        TextView rythm = (TextView)findViewById(R.id.rnb);
 
         // Set a ClickListener on that View
-        family.setOnClickListener(new View.OnClickListener() {
+        rythm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Create a new intent to open the {@link NumbersActivity}
@@ -46,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Find View that shows number category.
-        TextView phrases = (TextView)findViewById(R.id.rap);
+        TextView rap = (TextView)findViewById(R.id.rap);
 
         // Set a ClickListener on that View
-        phrases.setOnClickListener(new View.OnClickListener() {
+        rap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Create a new intent to open the {@link NumbersActivity}
@@ -59,9 +59,20 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        // Find View that shows number category.
+        TextView rock = (TextView)findViewById(R.id.rock);
+
+        // Set a ClickListener on that View
+        rock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create a new intent to open the {@link NumbersActivity}
+                Intent i = new Intent(MainActivity.this, RockActivity.class);
+                // Start the new activity
+                startActivity(i);
+
+            }
+        });
     }
-//    public void openNumbersList(View view) {
-//        Intent i = new Intent(this, NumbersActivity.class);
-//        startActivity(i);
-//    }
 }
