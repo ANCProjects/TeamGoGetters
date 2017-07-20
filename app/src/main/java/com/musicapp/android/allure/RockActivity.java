@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
-
+import android.view.View.OnClickListener;
 import java.util.ArrayList;
 
 /**
@@ -15,6 +17,19 @@ import java.util.ArrayList;
 
 public class RockActivity extends AppCompatActivity {
     private MediaPlayer mMediaPlayer;
+    boolean isPlay = false;
+
+    private View.OnClickListener mOnClickListener = new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            if (isPlay){
+                mMediaPlayer.pause();}
+            else {
+                mMediaPlayer.start();
+            }
+            isPlay = !isPlay;
+        }
+    };
 
     private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
@@ -48,7 +63,6 @@ public class RockActivity extends AppCompatActivity {
         //Play a different audio file
         releaseMediaPlayer();
 
-
         // Set a click listener to play the audio when the list item is clicked on
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -65,8 +79,8 @@ public class RockActivity extends AppCompatActivity {
                 mMediaPlayer = MediaPlayer.create(RockActivity.this, sound.getAudioResourceId());
 
                 // Start the audio file
-                mMediaPlayer.start();
                 mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                view.setOnClickListener(mOnClickListener);
             }
         });
     }

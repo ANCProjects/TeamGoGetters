@@ -16,6 +16,20 @@ import java.util.ArrayList;
 public class RapActivity extends AppCompatActivity {
     private MediaPlayer mMediaPlayer;
 
+    boolean isPlay = false;
+
+    private View.OnClickListener mOnClickListener = new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            if (isPlay){
+                mMediaPlayer.pause();}
+            else {
+                mMediaPlayer.start();
+            }
+            isPlay = !isPlay;
+        }
+    };
+
     private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
@@ -65,8 +79,8 @@ public class RapActivity extends AppCompatActivity {
                 mMediaPlayer = MediaPlayer.create(RapActivity.this, sound.getAudioResourceId());
 
                 // Start the audio file
-                mMediaPlayer.start();
                 mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                view.setOnClickListener(mOnClickListener);
             }
         });
     }
