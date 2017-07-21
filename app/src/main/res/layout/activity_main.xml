@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,27 +7,51 @@
     android:orientation="vertical"
     tools:context="com.musicapp.android.allure.MainActivity">
 
-    <TextView
-        android:id="@+id/hiphop"
-        style="@style/CategoryStyle"
-        android:background="@color/category_hiphop"
-        android:text="HipHop" />
+    <!-- Numbers category -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/category_hiphop">
+        <TextView
+            android:id="@+id/hiphop"
+            style="@style/CategoryStyle"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/category_hiphop" />
+    </FrameLayout>
 
-    <TextView
-        android:id="@+id/rnb"
-        style="@style/CategoryStyle"
-        android:background="@color/category_rnb"
-        android:text="RnB" />
+    <!-- Family category -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/category_rnb">
+        <TextView
+            android:id="@+id/rnb"
+            style="@style/CategoryStyle"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/category_rnb" />
+    </FrameLayout>
 
-    <TextView
-        android:id="@+id/rap"
-        style="@style/CategoryStyle"
-        android:background="@color/category_rap"
-        android:text="Rap" />
+    <!-- Colors category -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/category_rap">
+        <TextView
+            android:id="@+id/rap"
+            style="@style/CategoryStyle"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/category_rap" />
+    </FrameLayout>
 
-    <TextView
-        android:id="@+id/rock"
-        style="@style/CategoryStyle"
-        android:background="@color/category_rock"
-        android:text="Rock" />
+    <!-- Phrases category -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/category_rock">
+        <TextView
+            android:id="@+id/rock"
+            style="@style/CategoryStyle"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/category_rock" />
+    </FrameLayout>
 </LinearLayout>

@@ -1,5 +1,7 @@
 package com.musicapp.android.allure;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,8 +12,36 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class RnBActivity extends AppCompatActivity {
-
+    /** Handles play back of all the sound file*/
     private MediaPlayer mMediaPlayer;
+
+    /** Handles audio focus when playing a sound file */
+    private AudioManager mAudioManager;
+
+    AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener =
+            new AudioManager.OnAudioFocusChangeListener() {
+                public void onAudioFocusChange(int focusChange) {
+                    if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
+                            focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                        // The AUDIOFOCUS_LOSS_TRANSIENT case means that we've lost audio focus for a
+                        // short amount of time. The AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK case means that
+                        // our app is allowed to continue playing sound but at a lower volume. We'll treat
+                        // both cases the same way because our app is playing short sound files.
+
+                        // Pause playback and reset player to the start of the file. That way, we can
+                        // play the word from the beginning when we resume playback.
+                        mMediaPlayer.pause();
+                        mMediaPlayer.seekTo(0);
+                    } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+                        // The Audio Focus gain means we have regained focus and can resume playback
+                        mMediaPlayer.start();
+                    } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+                        // The AUDIOFOSS_LOSS case means we have regained focus
+                        // And can resume playback
+                        releaseMediaPlayer();
+                    }
+                }
+            };
 
     boolean isPlay = false;
 
@@ -27,6 +57,10 @@ public class RnBActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     * This listener gets triggered when the {@link MediaPlayer} has completed
+     * playing the audio file.
+     */
     private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
@@ -38,6 +72,9 @@ public class RnBActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sound_list);
+
+        /** Create and setup the {@link AudioManager} to reqeust audio focus */
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         // Create an ArrayList of sounds
 
@@ -72,16 +109,42 @@ public class RnBActivity extends AppCompatActivity {
                 //Play a different audio file
                 releaseMediaPlayer();
 
-                // Create and setup the {@link MediaPlayer} for the audio resource associated
-                // with the current word
-                mMediaPlayer = MediaPlayer.create(RnBActivity.this, sound.getAudioResourceId());
+                // Request audio focus for playback
+                int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
+                        // Use the music stream.
+                        AudioManager.STREAM_MUSIC,
+                        // Request permanent focus.
+                        AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 
-                // Start the audio file
-                mMediaPlayer.setOnCompletionListener(mCompletionListener);
-                view.setOnClickListener(mOnClickListener);
+                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                    // We now have audio focus
+
+                    // Create and setup the {@link MediaPlayer} for the audio resource associated
+                    // with the current word
+                    mMediaPlayer = MediaPlayer.create(RnBActivity.this, sound.getAudioResourceId());
+
+                    // Start the audio file
+                    if (isPlay){
+                        mMediaPlayer.pause();}
+                    else {
+                        mMediaPlayer.start();
+                    }
+                    isPlay = !isPlay;
+                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                    view.setOnClickListener(mOnClickListener);
+                }
             }
         });
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // When the activity is stopped, release the media player resources because we won't
+        // be playing any more sounds.
+        releaseMediaPlayer();
+    }
+
     /**
      * Clean up the media player by releasing its resources.
      */
@@ -96,6 +159,7 @@ public class RnBActivity extends AppCompatActivity {
             // setting the media player to null is an easy way to tell that the media player
             // is not configured to play an audio file at the moment.
             mMediaPlayer = null;
+            mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         }
     }
 }
