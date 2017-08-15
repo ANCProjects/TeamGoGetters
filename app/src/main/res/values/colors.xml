@@ -36,11 +36,5 @@
     <color name="category_rock">#008080</color>
 
     <!-- Text color for tabs-->
-    <color name="tab_default_color">#c2bbb7</color>
-
-    <!--Tab selected text color-->
-    <color name="tab_selected_text_color">#806760</color>
-
-    <!--Ash color-->
-    <color name="ash">#cccccc</color>
+    <color name="tab_Default_color">#A8A19E</color>
 </resources>
